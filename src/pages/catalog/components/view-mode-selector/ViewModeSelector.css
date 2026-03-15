@@ -1,0 +1,30 @@
+.view-mode-selector {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin: 0;
+}
+
+.view-mode-selector button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--primary-color);
+  background: none;
+  color: var(--primary-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.view-mode-selector button.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.view-mode-selector button:hover {
+  background: var(--primary-color);
+  color: white;
+}

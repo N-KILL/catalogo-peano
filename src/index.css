@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Montserrat', system-ui, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Text color by default */
+  color: #333;
+
+  /* Background color by default */
+  background-color: #fff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Colors */
+  --bg-light: #f4f6f9;
+  --bg-dark: #1e293b;
+  --primary-color: #38417F;
+  --text-dark: #1e293b;
+  --text-gray: #64748b;
+  --text-light-gray: #94a3b8;
+  --brand-red: #fb0014;
+  --brand-blue: #1ba0f2;
+  --brand-blue-hover: #178bcf;
+  --brand-light-blue: #e0f2fe;
+  --bg-green: #dcfce7;
+  --green: #16a34a;
+  --red: #dc2626;
+  --bg-red: #fee2e2;
+  --yellow: #f59e0b;
+  --bg-yellow: #fef3c7; 
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #666;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+.disable-element {
+  display: none;
+}

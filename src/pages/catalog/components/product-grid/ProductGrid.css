@@ -1,0 +1,216 @@
+.product-grid {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-grid thead {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+}
+
+.product-grid thead th {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 2px solid #1a252f;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.product-grid thead th[style*="cursor: pointer"]:hover {
+  background: var(--primary-color);
+}
+
+.product-grid th:nth-child(1),
+.product-grid td:nth-child(1) {
+  width: 12%;
+}
+
+.product-grid th:nth-child(2),
+.product-grid td:nth-child(2) {
+  width: 40%;
+  text-align: left;
+}
+
+.product-grid th:nth-child(3),
+.product-grid td:nth-child(3) {
+  width: 15%;
+}
+
+.product-grid th:nth-child(4),
+.product-grid td:nth-child(4) {
+  width: 10%;
+}
+
+.product-grid th:nth-child(5),
+.product-grid td:nth-child(5) {
+  width: 10%;
+}
+
+.product-grid th:nth-child(6),
+.product-grid td:nth-child(6) {
+  width: 13%;
+}
+
+.product-grid tbody {
+  background-color: #fff;
+}
+
+.product-grid tbody tr {
+  border-bottom: 1px solid #ecf0f1;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-grid tbody tr:hover {
+  background-color: #f8f9fa;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.product-grid tbody tr:last-child {
+  border-bottom: none;
+}
+
+.product-grid td {
+  padding: 14px 16px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--primary-color);
+  border: 1px 0px solid #ecf0f1;
+}
+
+.product-grid input[type="number"] {
+  width: 60px;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-grid input[type="number"]:focus {
+  outline: none;
+  border-color: #27ae60;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+.product-grid button {
+  padding: 8px 16px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-grid button:hover:not(:disabled) {
+  background-color: var(--brand-blue-hover);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.product-grid button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-grid button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.back-green {
+  background-color: var(--bg-green);
+  color: var(--green);
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-red {
+  background-color: var(--bg-red);
+  color: var(--red);
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-yellow {
+  background-color: var(--bg-yellow);
+  color: var(--yellow);
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1800px) {
+
+  .product-grid th:nth-child(2),
+  .product-grid td:nth-child(2) {
+    width: 34%;
+  }
+
+  .product-grid th:nth-child(4),
+  .product-grid td:nth-child(4) {
+    width: 15%;
+  }
+
+  .product-grid th:nth-child(5),
+  .product-grid td:nth-child(5) {
+    width: 12%;
+  }
+
+  .product-grid th:nth-child(6),
+  .product-grid td:nth-child(6) {
+    width: 15%;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    font-size: 12px;
+  }
+
+  .product-grid thead th,
+  .product-grid td {
+    padding: 10px 8px;
+  }
+
+  .product-grid input[type="number"] {
+    width: 50px;
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .product-grid button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+.product-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+  text-align: left;
+}

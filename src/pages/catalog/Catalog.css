@@ -1,0 +1,32 @@
+.catalog {
+  margin-top: 120px;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+}
+
+.catalog-container {
+  width: 90vw;
+  text-align: center;
+}
+
+.catalog-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.catalog-container p {
+  font-size: 1.1rem;
+}
+
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.catalog-header > :first-child {
+  flex: 1;
+}
