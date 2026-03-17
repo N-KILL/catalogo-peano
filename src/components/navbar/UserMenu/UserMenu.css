@@ -1,0 +1,131 @@
+.user-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.user-menu-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.user-menu-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-icon {
+  font-size: 24px;
+}
+
+.user-dropdown-modal {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  width: 250px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 1000;
+  color: #333333;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.user-guest-content, .user-logged-in-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-guest-content h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.user-guest-content p {
+  margin: 0 0 16px 0;
+  font-size: 13px;
+  color: #666666;
+  line-height: 1.4;
+}
+
+.login-btn-link {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #e50000; /* Matching Peano's possible red brand color, adjust as needed */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  box-sizing: border-box;
+}
+
+.login-btn-link:hover {
+  background-color: #cc0000;
+}
+
+.register-prompt {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.register-text {
+  color: #666666;
+}
+
+.register-link {
+  color: #e50000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+.user-info {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eeeeee;
+  word-break: break-all;
+}
+
+.user-email {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333333;
+}
+
+.logout-btn {
+  background-color: #f5f5f5;
+  border: 1px solid #dddddd;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #333333;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #eeeeee;
+}
