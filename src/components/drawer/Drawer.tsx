@@ -38,7 +38,7 @@ export function DrawerMenu() {
           <img src="/src/assets/RpLogo.png" alt="Logo repuestos peano" />
         </div>
         <div className="drawer-menu">
-          <Link to="/" onClick={handleLinkClick} className={window.location.pathname === '/' ? 'selected' : ''}>
+          <Link to="/home" onClick={handleLinkClick} className={window.location.pathname === '/' ? 'selected' : ''}>
             <IoHomeSharp className="icon-size" /> Inicio
           </Link>
           <Link to="/products" onClick={handleLinkClick} className={window.location.pathname === '/products' ? 'selected' : ''}>

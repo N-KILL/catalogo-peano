@@ -9,7 +9,7 @@ import './Footer.css';
 
 export function Footer() {
     const location = useLocation();
-    const isHome = location.pathname === '/';
+    const isHome = location.pathname === '/home';
     const [isOpen, setIsOpen] = useState(false);
     const isExpanded = isHome || isOpen;
 
