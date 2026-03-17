@@ -51,22 +51,94 @@
     opacity: 0.85;
 }
 
-/* ── GRID ── */
-.featured-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+/* ── ACTIONS & NAV ── */
+.featured-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0px 8px;
+}
+
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color, #eaeaea);
+    background: #fff;
+    color: var(--text-dark, #333);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-nav-btn.prev {
+    left: -22px;
+}
+
+.carousel-nav-btn.next {
+    right: -22px;
+}
+
+.carousel-nav-btn:hover {
+    background: var(--brand-blue, #0056b3);
+    color: #fff;
+    border-color: var(--brand-blue, #0056b3);
+}
+
+/* ── CAROUSEL ── */
+.featured-carousel {
+    display: flex;
     gap: 1.25rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+    
+    /* Hide scrollbar for a cleaner look */
+    scrollbar-width: none; /* Firefox */
+}
+
+.featured-carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.carousel-item {
+    flex: 0 0 calc(25% - 0.9375rem); /* 4 items on desktop */
+    scroll-snap-align: start;
+    box-sizing: border-box;
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1000px) {
-    .featured-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .carousel-item {
+        flex: 0 0 calc(50% - 0.625rem); /* 2 items on tablet */
     }
 }
 
 @media (max-width: 560px) {
-    .featured-grid {
-        grid-template-columns: 1fr;
+    .carousel-item {
+        flex: 0 0 100%; /* 1 item on mobile */
+        min-width: 260px;
     }
+    
+    /* Hide the navigation buttons on mobile to prefer swiping */
+    .carousel-nav-btn {
+        display: none;
+    }
+    
+    /* Enable standard scrollbar on mobile occasionally if they don't know it's swipable, 
+       but keeping it hidden is usually fine since it's responsive */
 }
