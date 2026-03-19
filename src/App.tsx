@@ -15,10 +15,12 @@ import { WhatsAppButton } from './components/whatsapp/WhatsAppButton'
 // Pags
 import { Home } from './pages/home/Home'
 import { Catalog } from './pages/catalog/Catalog'
-import LoginRegisterPage from './pages/auth/login-register/LoginRegisterPage'
+import LoginRegisterPage from './pages/auth/LoginRegister/LoginRegisterPage'
 
 // Css
 import './App.css'
+import ChangePasswordPage from './pages/auth/ChangePassword/ChangePasswordPage'
+import ForgotPasswordPage from './pages/auth/ForgotPassword/ForgotPasswordPage'
 
 function MainLayout() {
   return (
@@ -50,6 +52,8 @@ function App() {
           
           {/* Auth Route (No Navbar/Footer) */}
           <Route path="/login" element={<LoginRegisterPage />} />
+          <Route path="/change-password" element={<ChangePasswordPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
           {/* Main App Routes (With Navbar/Footer) */}
           <Route element={<MainLayout />}>

@@ -8,6 +8,7 @@ interface AuthState {
   isLoading: boolean;
   error: string | null;
   passError: string | null;
+  isPasswordRecovery: boolean;
 
   setSession: (session: Session | null) => void;
   setUser: (user: User | null) => void;
@@ -18,7 +19,10 @@ interface AuthState {
   signInWithPassword: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
+  updatePassword: (password: string) => Promise<void>;
+  resetPasswordForEmail: (email: string) => Promise<void>;
   clearError: () => void;
+  setIsPasswordRecovery: (isRecovery: boolean) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -27,6 +31,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   isLoading: false,
   error: null,
   passError: null,
+  isPasswordRecovery: false,
 
   setSession: (session) => set({ session, user: session?.user || null }),
   setUser: (user) => set({ user }),
@@ -34,6 +39,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   setError: (error) => set({ error }),
   setPassError: (passError) => set({ passError }),
   clearError: () => set({ error: null, passError: null }),
+  setIsPasswordRecovery: (isRecovery) => set({ isPasswordRecovery: isRecovery }),
 
   signInWithOAuth: async () => {
     set({ isLoading: true, error: null, passError: null });
@@ -57,7 +63,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       if (error) throw error;
     } catch (err: any) {
       set({ error: err.message || 'Ocurrió un error al iniciar sesión', isLoading: false });
-      throw err; // Re-throw to inform component if needed.
+      throw err;
     } finally {
       set({ isLoading: false });
     }
@@ -84,6 +90,35 @@ export const useAuthStore = create<AuthState>((set) => ({
     } else {
       set({ user: null, session: null, isLoading: false, error: null });
     }
+  },
+
+  updatePassword: async (password: string) => {
+    set({ isLoading: true, error: null, passError: null });
+    try {
+      const { error } = await supabase.auth.updateUser({ password });
+      if (error) throw error;
+      set({ isPasswordRecovery: false });
+    } catch (err: any) {
+      set({ error: err.message || 'Ocurrió un error al actualizar la contraseña', isLoading: false });
+      throw err;
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  resetPasswordForEmail: async (email: string) => {
+    set({ isLoading: true, error: null });
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/change-password`,
+      });
+      if (error) throw error;
+    } catch (err: any) {
+      set({ error: err.message || 'Ocurrió un error al enviar el correo de recuperación', isLoading: false });
+      throw err;
+    } finally {
+      set({ isLoading: false });
+    }
   }
 }));
 
@@ -96,8 +131,11 @@ export const initializeAuth = () => {
     setLoading(false);
   });
 
-  const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+  const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
     setSession(session);
+    if (event === 'PASSWORD_RECOVERY') {
+      useAuthStore.getState().setIsPasswordRecovery(true);
+    }
   });
 
   return subscription;

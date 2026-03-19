@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 // Stores
 import { useAuthStore } from '../../../store/authStore';
-import { useLoginUIStore } from '../../../store/loginUIStore';
+import { useLoginUIStore } from './loginUIStore';
 
 // Utils
 import { PASSWORD_REGEX } from '../../../utils/regexp';
@@ -13,8 +13,11 @@ import { FcGoogle } from 'react-icons/fc';
 import { MdEmail, MdLock } from 'react-icons/md';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
+// Components
+import { MessageModal } from '../../../components/ui/MessageModal/MessageModal';
+
 // Css
-import './LoginRegisterPage.css';
+import '../AuthPages.css';
 
 export default function LoginRegisterPage() {
   const {
@@ -27,6 +30,13 @@ export default function LoginRegisterPage() {
     setEmail, setPassword, setConfirmPassword, toggleMode, resetForm, setIsLogin,
     toggleShowPassword, toggleShowConfirmPassword
   } = useLoginUIStore();
+
+  const [modalConfig, setModalConfig] = useState<{isOpen: boolean, message: string, title: string, type: "success" | "error" | "info"}>({
+    isOpen: false,
+    message: "",
+    title: "",
+    type: "info"
+  });
 
   const [searchParams] = useSearchParams();
 
@@ -43,7 +53,7 @@ export default function LoginRegisterPage() {
     await signInWithOAuth();
   };
 
-  const handleAuth = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     clearError();
 
@@ -62,7 +72,12 @@ export default function LoginRegisterPage() {
       await signInWithPassword(email, password);
     } else {
       await signUp(email, password);
-      alert('Revisa tu correo para confirmar tu cuenta.');
+      setModalConfig({
+        isOpen: true,
+        title: "Registro exitoso",
+        message: "Revisa tu correo para confirmar tu cuenta.",
+        type: "success"
+      });
       resetForm();
     }
   };
@@ -98,16 +113,7 @@ export default function LoginRegisterPage() {
 
         {error && <div className="error-message">{error}</div>}
 
-        <button className="social-btn" onClick={handleGoogleLogin} disabled={isLoading} type="button">
-          <FcGoogle className="google-icon" />
-          <span>Continuar con Google</span>
-        </button>
-
-        <div className="divider">
-          <span className="divider-text"> O {isLogin ? 'INICIAR SESIÓN' : 'REGISTRARSE'} CON EMAIL</span>
-        </div>
-
-        <form onSubmit={handleAuth}>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <div className="form-header">
               <label className="form-label">Email</label>
@@ -117,7 +123,7 @@ export default function LoginRegisterPage() {
               <input
                 type="email"
                 className="form-input"
-                placeholder="nombre@empresa.com"
+                placeholder="tu-correo@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -129,7 +135,7 @@ export default function LoginRegisterPage() {
             <div className="form-header">
               <label className="form-label">Contraseña</label>
               {isLogin && (
-                <button type="button" className="forgot-link">
+                <button type="button" className="forgot-link" onClick={() => navigate('/forgot-password')}>
                   ¿Olvidaste tu contraseña?
                 </button>
               )}
@@ -144,8 +150,8 @@ export default function LoginRegisterPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="password-toggle-btn"
                 onClick={toggleShowPassword}
                 tabIndex={-1}
@@ -171,8 +177,8 @@ export default function LoginRegisterPage() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="password-toggle-btn"
                   onClick={toggleShowConfirmPassword}
                   tabIndex={-1}
@@ -188,7 +194,26 @@ export default function LoginRegisterPage() {
             {isLoading ? 'Cargando...' : isLogin ? 'Iniciar Sesión' : 'Registrarse'}
           </button>
         </form>
+
+        <button className="social-btn" onClick={handleGoogleLogin} disabled={isLoading} type="button">
+          <FcGoogle className="google-icon" />
+          <span>Continuar con Google</span>
+        </button>
+
       </div>
+
+      <MessageModal 
+        isOpen={modalConfig.isOpen}
+        title={modalConfig.title}
+        message={modalConfig.message}
+        type={modalConfig.type}
+        onClose={() => {
+          setModalConfig({...modalConfig, isOpen: false});
+          if (modalConfig.type === "success") {
+            toggleMode(); // Change to login after success
+          }
+        }}
+      />
     </div>
   );
 }
