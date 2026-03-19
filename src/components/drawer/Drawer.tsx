@@ -35,7 +35,7 @@ export function DrawerMenu() {
       )}
       <nav className={`drawer ${isOpen ? 'open' : ''}`}>
         <div className="drawer-header">
-          <img src="/src/assets/RpLogo.png" alt="Logo repuestos peano" />
+          <img src="/src/assets/logo.png" alt="Logo repuestos peano" />
         </div>
         <div className="drawer-menu">
           <Link to="/home" onClick={handleLinkClick} className={window.location.pathname === '/' ? 'selected' : ''}>

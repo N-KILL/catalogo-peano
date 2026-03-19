@@ -63,7 +63,7 @@ export function HeroSection() {
                 {/* Right image */}
                 <div className="hero-image-wrapper">
                     <img
-                        src="/src/assets/RpLogo.png"
+                        src="/src/assets/logo.png"
                         alt="Peano repuestos logo"
                         className="hero-image"
                         onError={(e) => {
