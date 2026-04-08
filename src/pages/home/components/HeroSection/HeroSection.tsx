@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 // Icons
 import { FaWhatsapp } from 'react-icons/fa';
 
+// Logo
+import myLogo from '/images/logo.png'
+
 // Components
 import { SearchBar } from 'components/searchBar/SearchBar'
 
@@ -63,7 +66,7 @@ export function HeroSection() {
                 {/* Right image */}
                 <div className="hero-image-wrapper">
                     <img
-                        src="/src/assets/logo.png"
+                        src={myLogo} 
                         alt="Peano repuestos logo"
                         className="hero-image"
                         onError={(e) => {

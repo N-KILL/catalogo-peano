@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 import { IoHomeSharp } from "react-icons/io5";
 import { LuPackageSearch } from "react-icons/lu";
 
+// Logo
+import myLogo from '/images/logo.png'
+
 // Css
 import './Drawer.css'
 
@@ -35,7 +38,7 @@ export function DrawerMenu() {
       )}
       <nav className={`drawer ${isOpen ? 'open' : ''}`}>
         <div className="drawer-header">
-          <img src="/src/assets/logo.png" alt="Logo repuestos peano" />
+          <img src={myLogo} alt="Logo repuestos peano" />
         </div>
         <div className="drawer-menu">
           <Link to="/home" onClick={handleLinkClick} className={window.location.pathname === '/' ? 'selected' : ''}>
